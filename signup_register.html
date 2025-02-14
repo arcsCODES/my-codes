@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Signup/Register</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            function validatePassword() {
+                const password = document.getElementById("new-password").value;
+                const confirmPassword = document.getElementById("confirm-password").value;
+                const errorMessage = document.getElementById("password-error");
+                
+                if (password !== confirmPassword) {
+                    errorMessage.textContent = "Passwords do not match!";
+                    errorMessage.style.color = "red";
+                    return false;  
+                }
+                
+                
+                errorMessage.textContent = "";
+                return true;  
+            }
+        </script>
+    </head>
+    <body>
+        <header style="text-align: center; padding: 20px; background-color: #40A333; color: white;">
+            <h1>Sign in / Create your account!</h1>
+        </header>
+        <br><br><br>
+        
+        <center>
+            <h2>Sign in</h2>
+        </center>
+        <form action="/signin" method="POST">
+            <table>
+                <tr>
+                    <td><label for="signin-username">Enter username:</label></td>
+                    <td><input type="text" id="signin-username" name="signin-username" required></td>
+                </tr>
+                <tr>
+                    <td><label for="signin-password">Enter password:</label></td>
+                    <td><input type="password" id="signin-password" name="signin-password" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <input type="submit" value="Sign In" id="signin">
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <br><br><br>
+        
+        <center>
+            <h2>Register</h2>
+        </center>
+        <form action="/register" method="POST" onsubmit="return validatePassword()">
+            <table>
+                <tr>
+                    <td><label for="register-username">Enter username:</label></td>
+                    <td><input type="text" id="register-username" name="register-username" required></td>
+                </tr>
+                <tr>
+                    <td><label for="register-email">Enter email:</label></td>
+                    <td><input type="email" id="register-email" name="register-email" required></td>
+                </tr>
+                <tr>
+                    <td><label for="new-password">New password:</label></td>
+                    <td><input type="password" id="new-password" name="new-password" required></td>
+                </tr>
+                <tr>
+                    <td><label for="confirm-password">Confirm password:</label></td>
+                    <td><input type="password" id="confirm-password" name="confirm-password" required></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" id="password-error" style="text-align: center;"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <input type="submit" value="Register" id="register">
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <br><br><br>
+
+        <footer style="text-align: center; padding: 15px; background-color: #40A333; color: white; margin-top: 20px;">
+            &copy; 2025 Prince Ryan R. Policianos. All rights reserved.
+        </footer>
+    </body>
+</html>
+
+<style>
+    table {
+        background-color: #F0F4F5;
+        border-radius: 10%;
+        margin: 0 auto;
+        border-collapse: collapse;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    td {
+        padding: 30px;
+    }
+
+    body {
+        background-color: #E2DFDF;
+        font-family: Arial, sans-serif;
+    }
+
+    #signin, #register {
+        background-color: #4CAF50; 
+        color: white; 
+        padding: 10px 20px; 
+        border: none; 
+        border-radius: 5px; 
+        cursor: pointer; 
+        font-size: 16px; 
+        transition: background-color 0.3s ease; 
+    }
+
+    #signin:hover, #register:hover {
+        background-color: #45a049;
+    }
+
+    #password-error {
+        color: red;
+        font-size: 14px;
+    }
+</style>
