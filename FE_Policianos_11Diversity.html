@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Contact Us</title>
+</head>
+<body>
+    <div class="contact-container">
+        <h1>Contact Me</h1>
+        <h5>Greetings! I am Prince Ryan R. Policianos from 11-Diversity! If you want to reach out to me, feel free to fill out this form!.</h5><br>
+        <form id="contact-form" class="contact-form">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+
+            <button type="submit">Submit</button><br>
+            <div id="form-response"></div>
+        </form>
+    </div>
+</body>
+</html>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.contact-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #0056b3;
+}
+
+h5 {
+	font-family: serif;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+input, textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    padding: 12px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #003d80;
+}
+
+button:focus {
+    outline: none;
+}
+
+#form-response {
+    margin-top: 10px;
+    font-size: 14px;
+    color: red;
+}
+
+</style>
+
+<script>
+document.getElementById("contact-form").addEventListener("submit", function(event) {
+    event.preventDefault(); 
+    
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+    
+    if (name.trim() === "" || email.trim() === "" || message.trim() === "") {
+        displayMessage("Please fill out all fields.", "error");
+    } else if (!validateEmail(email)) {
+        displayMessage("Please enter a valid email address.", "error");
+    } else {
+        displayMessage("Thank you for your message! Please note that it will take 12-24 hours to reach your message to my email. Thank you for contacting!", "success");
+        document.getElementById("contact-form").reset();
+    }
+});
+
+function displayMessage(message, type) {
+    const responseElement = document.getElementById("form-response");
+    responseElement.textContent = message;
+    if (type === "error") {
+        responseElement.style.color = "red";
+    } else if (type === "success") {
+        responseElement.style.color = "green";
+    }
+}
+
+function validateEmail(email) {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailPattern.test(email);
+}
+</script>
